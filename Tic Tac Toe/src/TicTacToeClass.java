@@ -21,6 +21,7 @@ public class TicTacToeClass {
     for (int i = 0; i < 3; i++) {
       if (board[i][0] == p && board[i][1] == p && board[i][2] == p) {
         return true;
+      
       }
     }
     // check columns
@@ -36,6 +37,7 @@ public class TicTacToeClass {
     if (board[0][2] == p && board[1][1] == p && board[2][0] == p) {
       return true;
     }
+    
     return false;
   }
 
@@ -49,7 +51,11 @@ public class TicTacToeClass {
 
   public boolean isValid(int r, int c) {
     return r >= 0 && r < 3 && c >= 0 && c < 3 && board[r][c] == ' ';
+    
   }
+  
+
+  
 
   public int numTurns() {
     return turns;
@@ -59,23 +65,35 @@ public class TicTacToeClass {
     return board[r][c];
   }
 
-  public void displayBoard() {
-    System.out.println();
-    for (int i = 0; i < 3; i++) {
-      System.out.print(" " + board[i][0] + " | " + board[i][1] + " | " + board[i][2] + " ");
-      if (i < 2) {
-        System.out.println("\n---|---|---");
-      }
-    }
-    System.out.println();
+  private static int noGamesPlayed = 0;
+
+  public static void updateGamesPlayed() {
+      noGamesPlayed ++;
   }
+  
+  
+  
+  public void displayBoard()
+	{
+		System.out.println("  0  " + board[0][0] + "|" + board[0][1] + " |" + board[0][2]);
+		System.out.println("    --|--|--");
+		System.out.println("  1  " + board[1][0] + "|" + board[1][1] + " |" + board[1][2]);
+		System.out.println("    --|--|--");
+		System.out.println("  2  " + board[2][0] + "|" + board[2][1] + " |" + board[2][2]);
+		System.out.println("    0  1  2 ");
+	}
+
+  
+
 
   // modifiers
   public void playMove(char p, int r, int c) {
     if (isValid(r, c)) {
       board[r][c] = p;
-      turns++;
-    }
+      turns++;}
+    else {
+          System.out.println(
+              "Invalid entry. Please select and open slot");
+      }
   }
 }
-
